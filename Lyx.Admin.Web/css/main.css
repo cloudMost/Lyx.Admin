@@ -1,0 +1,20 @@
+body {
+  padding-top: 80px;
+}
+.page-top-bar {
+    padding: 0px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+}
+.page-top-bar .page-left{
+    display: inline-block;
+    float: left;
+    padding: 10px 6px;
+    margin: 0;
+    list-style: none;
+}
+.page-top-bar .page-toolbar {
+    display: inline-block;
+    float: right;
+}
+

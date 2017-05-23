@@ -1,0 +1,80 @@
+﻿@using System.Threading
+@using System.Web.Optimization
+@using Abp.Timing
+@using Abp.Web.Mvc.Extensions
+@{ 
+    Layout = null;
+}
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
+<head>
+    <meta charset="utf-8" />
+    <title>系统登录</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <meta content="" name="description" />
+    <meta content="" name="author" />
+
+    @Styles.Render("~/Bundles/base/css")
+
+    @Styles.Render("~/Bundles/metronic/login/css")
+
+    @Styles.Render("~/Bundles/metronic/css")
+    
+
+    @RenderSection("styles", required: false)
+    <link rel="shortcut icon" href="favicon.ico" />
+</head>
+
+<body class="login">
+    <div class="logo">
+        <a href="index.html">
+            <img src="~/Metronic/assets/admin/layout2/img/logo-big.png" alt="" />
+        </a>
+    </div>
+    <div class="menu-toggler sidebar-toggler">
+    </div>
+   
+    <div class="content">
+        @RenderBody()
+    </div>
+   
+    <div class="copyright">
+        2014 &copy; Metronic. Admin Dashboard Template.
+    </div>
+    @Scripts.Render("~/Bundles/libs/js")
+
+    @Scripts.Render("~/Bundles/metronic/js")
+
+    @Html.IncludeScript(ScriptPaths.JQuery)
+    @Html.IncludeScript(ScriptPaths.JQuery_Migrate)
+    @Html.IncludeScript(ScriptPaths.Bootstrap)
+    @Html.IncludeScript(ScriptPaths.JQuery_BlockUi)
+    @Html.IncludeScript(ScriptPaths.JQuery_Uniform)
+    @Html.IncludeScript(ScriptPaths.JQuery_Cookie)
+    @Html.IncludeScript(ScriptPaths.JQuery_Validation)
+
+    @Html.IncludeScript("~/Scripts/select2/select2.min.js")
+
+    @Html.IncludeScript(ScriptPaths.Metronic)
+    @Html.IncludeScript(ScriptPaths.Metronic_Layout)
+    @Html.IncludeScript(ScriptPaths.Metronic_Demo)
+    @Html.IncludeScript("~/Metronic/assets/admin/pages/scripts/login.js")
+    @RenderSection("scripts", required: false)
+    <script>
+        jQuery(document).ready(function() {
+          Metronic.init(); // init metronic core components
+          Layout.init(); // init current layout
+          Login.init();
+          Demo.init();
+        });
+    </script>
+    <!-- END JAVASCRIPTS -->
+</body>
+<!-- END BODY -->
+</html>

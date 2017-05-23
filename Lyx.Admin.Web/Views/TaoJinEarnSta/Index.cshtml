@@ -1,0 +1,167 @@
+﻿
+@{
+    ViewBag.Title = "TaoJinEarnSta";
+}
+
+<div class="page-content">
+    <!-- BEGIN PAGE HEADER-->
+    @*<h3 class="page-title">
+            Basic Datatables <small>basic datatable samples</small>
+        </h3>*@
+
+    <!-- END PAGE HEADER-->
+    <!-- BEGIN PAGE CONTENT-->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="portlet box">
+                <div class="portlet-body">
+                    <ul class="nav nav-tabs">
+                        <li class="active">
+                            <a href="#Plant" data-toggle="tab">
+                                种植情况
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#Stastic" data-toggle="tab">
+                                收益统计
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane fade active in" id="Plant">
+                            <div style="margin-bottom:4px;">
+                                <button id="btnAddConsume" data-target="#ConsumeFruitModal" data-toggle="modal" class="btn blue">填写当天消耗</button>
+                            </div>
+                            <div class="panel-group accordion" id="accordion3">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a class="accordion-toggle accordion-toggle-styled" data-toggle="collapse" data-parent="#accordion3" href="#collapse_3_1">
+                                                2017年3月12日种植情况
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapse_3_1" class="panel-collapse in">
+                                        <div class="panel-body">
+                                            <table class="table table-bordered table-hover">
+                                                <tbody>
+                                                    <tr>
+                                                        <td style="width:10%;">种子消耗</td>
+                                                        <td ></td>
+                                                        <td style="width:10%;">狗粮消耗</td>
+                                                        <td></td>
+                                                        <td style="width:10%;">肥料消耗</td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>萝卜产出</td>
+                                                        <td></td>
+                                                        <td>苹果产出</td>
+                                                        <td></td>
+                                                        <td colspan="2"></td>
+                                                        
+                                                    </tr>
+                                                    <tr>
+                                                        <td>辣椒产出</td>
+                                                        <td></td>
+                                                        <td>西瓜产出</td>
+                                                        <td></td>
+                                                        <td colspan="2"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>南瓜产出</td>
+                                                        <td></td>
+                                                        <td>草莓产出</td>
+                                                        <td></td>
+                                                        <td colspan="2"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>核桃产出</td>
+                                                        <td></td>
+                                                        <td>可可产出</td>
+                                                        <td></td>
+                                                        <td>总收益</td>
+                                                        <td><span>88元</span></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="Stastic">
+                            <div class="panel-group accordion" id="accordion3">
+                            
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+</div>
+<div class="modal fade" id="ConsumeFruitModal" tabindex="-1" role="dialog" aria-labelledby="ConsumeFruitModal" aria-hidden="false">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <form name="novelForm" role="form" novalidate class="form-validation">
+                    <div class="modal-header">
+                        <h4 class="modal-title">
+                            <span>@L("CreateFruitModal")</span>
+                            <span style="display:none;">@L("UpdateFruitModal")</span>
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table table-bordered table-hover">
+                            <tbody>
+                                <tr>
+                                    <td style="width:15%;">种子消耗</td>
+                                    <td><input class="form-control" type="text" name="ConsumeSeed" required maxlength="10" minlength="2"></td>
+                                    <td style="width:15%;">狗粮消耗</td>
+                                    <td><input class="form-control" type="text" name="ConsumeSeed" maxlength="10" minlength="2"></td>
+                                    <td style="width:15%;">肥料消耗</td>
+                                    <td><input class="form-control" type="text" name="ConsumeSeed" maxlength="10" minlength="2"></td>
+                                </tr>
+                                <tr>
+                                    <td>萝卜产出</td>
+                                    <td><input class="form-control" type="text" name="ConsumeSeed" maxlength="10" minlength="2"></td>
+                                    <td>苹果产出</td>
+                                    <td><input class="form-control" type="text" name="ConsumeSeed" maxlength="10" minlength="2"></td>
+                                    <td colspan="2"></td>
+
+                                </tr>
+                                <tr>
+                                    <td>辣椒产出</td>
+                                    <td><input class="form-control" type="text" name="ConsumeSeed" maxlength="10" minlength="2"></td>
+                                    <td>西瓜产出</td>
+                                    <td><input class="form-control" type="text" name="ConsumeSeed" maxlength="10" minlength="2"></td>
+                                    <td colspan="2"></td>
+                                </tr>
+                                <tr>
+                                    <td>南瓜产出</td>
+                                    <td><input class="form-control" type="text" name="ConsumeSeed" maxlength="10" minlength="2"></td>
+                                    <td>草莓产出</td>
+                                    <td><input class="form-control" type="text" name="ConsumeSeed" maxlength="10" minlength="2"></td>
+                                    <td colspan="2"></td>
+                                </tr>
+                                <tr>
+                                    <td>核桃产出</td>
+                                    <td><input class="form-control" type="text" name="ConsumeSeed" maxlength="10" minlength="2"></td>
+                                    <td>可可产出</td>
+                                    <td><input class="form-control" type="text" name="ConsumeSeed" maxlength="10" minlength="2"></td>
+                                    <td colspan="2"></td>
+                                </tr>
+                            </tbody>
+
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">@L("Cancel")</button>
+                        <button type="submit" class="btn btn-primary blue"><i class="fa fa-save"></i> <span>@L("Save")</span></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    </div>

@@ -1,0 +1,82 @@
+﻿@using Abp.Web.Mvc.Extensions
+@{
+    ViewBag.ActiveMenu = "NovelSpider";
+}
+@section styles{
+    @Html.IncludeStyle("~/Scripts/bootstrap-table/bootstrap-table.css")
+}
+<div class="page-content">
+    <!-- BEGIN PAGE HEADER-->
+    @*<h3 class="page-title">
+        Basic Datatables <small>basic datatable samples</small>
+    </h3>*@
+
+    <div class="page-bar">
+        <ul class="page-breadcrumb">
+            <li>
+               
+            </li>
+        </ul>
+        <div class="page-toolbar">
+            <button id="btnAddNovel" data-target="#CreateNovelModal" data-toggle="modal" class="btn blue">创建小说</button>
+        </div>
+        
+    </div>
+    <!-- END PAGE HEADER-->
+    <!-- BEGIN PAGE CONTENT-->
+    <div class="row">
+        <div class="col-md-12">
+            <!--搜索-->
+            <div id="tb_novels_toolbar" style="display:inline-flex;">
+                <input type="text" class="form-control" placeholder="输入小说名" />&nbsp;
+                <div class="btn-group">
+                    <button id="btn_add" type="button" class="btn blue">搜索</button>
+                </div>
+            </div>
+            <table id="tb_novels" >
+                <thead>
+                    <tr>
+                        <th data-checkbox="true"></th>
+                        <th data-field="Name"  data-width="20%">小说名</th>
+                        <th data-field="Author" >作者</th>
+                        <th data-field="Category">分类</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+<div class="modal fade" id="CreateNovelModal" tabindex="-1" role="dialog" aria-labelledby="CreateNovelModal" aria-hidden="false">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form name="novelForm" role="form" novalidate class="form-validation">
+                <div class="modal-header">
+                    <h4 class="modal-title">
+                        <span>@L("CreateOrUpdateNovel")</span>
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>@L("NovelName")</label>
+                        <input class="form-control" type="text" name="Name" required maxlength="10" minlength="2">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">@L("Cancel")</button>
+                    <button type="submit" class="btn btn-primary blue"><i class="fa fa-save"></i> <span>@L("Save")</span></button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+    @Html.IncludeScript(ScriptPaths.JQuery_Validation);
+    @Html.IncludeScript("~/Scripts/bootstrap-table/bootstrap-table.js")
+    @Html.IncludeScript("~/Scripts/bootstrap-table/locale/bootstrap-table-zh-CN.js")
+    @Html.IncludeScript("~/Views/NovelSpider/Index.js");
+}
+

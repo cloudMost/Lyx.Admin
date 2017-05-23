@@ -1,0 +1,247 @@
+﻿@using Abp.Web.Mvc.Extensions
+@{
+    ViewBag.ActiveMenu = "FileManage";
+}
+@section styles{
+    @Html.IncludeStyle("~/Scripts/jquery-file-upload/blueimp-gallery/blueimp-gallery.min.css")
+    @Html.IncludeStyle("~/Scripts/jquery-file-upload/css/jquery.fileupload.css")
+    @Html.IncludeStyle("~/Scripts/jquery-file-upload/css/jquery.fileupload-ui.css")
+}
+<div class="page-content">
+    <!-- BEGIN PAGE HEADER-->
+    @*<h3 class="page-title">
+            Basic Datatables <small>basic datatable samples</small>
+        </h3>*@
+
+    <!-- END PAGE HEADER-->
+    <!-- BEGIN PAGE CONTENT-->
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="portlet box">
+                <div class="portlet-body">
+                    <ul class="nav nav-tabs">
+                        <li class="active">
+                            <a href="#Plant" data-toggle="tab">
+                                文件上传
+                            </a>
+                        </li>
+                        
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane fade active in" id="Plant">
+                            <form id="fileupload" action="@Url.Action("UploadFiles","FileManage")" method="POST" enctype="multipart/form-data" class="">
+                                <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
+                                <div class="row fileupload-buttonbar">
+                                    <div class="col-lg-7">
+                                        <!-- The fileinput-button span is used to style the file input field as button -->
+                                        <span class="btn green fileinput-button">
+                                            <i class="fa fa-plus"></i>
+                                            <span>
+                                                添加文件
+                                            </span>
+                                            <input type="file" name="files[]" multiple="">
+                                        </span>
+                                        <button type="submit" class="btn blue start">
+                                            <i class="fa fa-upload"></i>
+                                            <span>
+                                                开始上传
+                                            </span>
+                                        </button>
+                                        <button type="reset" class="btn warning cancel">
+                                            <i class="fa fa-ban-circle"></i>
+                                            <span>
+                                                取消上传
+                                            </span>
+                                        </button>
+                                        <button type="button" class="btn red delete">
+                                            <i class="fa fa-trash"></i>
+                                            <span>
+                                                删除
+                                            </span>
+                                        </button>
+                                        <input type="checkbox" class="toggle">
+                                        <!-- The global file processing state -->
+                                        <span class="fileupload-process">
+                                        </span>
+                                    </div>
+                                    <!-- The global progress information -->
+                                    <div class="col-lg-5 fileupload-progress fade">
+                                        <!-- The global progress bar -->
+                                        <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+                                            <div class="progress-bar progress-bar-success" style="width:0%;">
+                                            </div>
+                                        </div>
+                                        <!-- The extended global progress information -->
+                                        <div class="progress-extended">
+                                            &nbsp;
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- The table listing the files available for upload/download -->
+                                <table role="presentation" class="table table-bordered table-hover clearfix">
+                                    <thead>
+                                        <tr>
+                                            <td style="width:5%;">序号</td>
+                                            <td>文件名</td>
+                                            <td>大小</td>
+                                            <td>操作</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="files"></tbody>
+                                </table>
+                            </form>
+                              
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Demo Notes</h3>
+                </div>
+                <div class="panel-body">
+                    <ul>
+                        <li>
+                            The maximum file size for uploads in this demo is <strong>5 MB</strong> (default file size is unlimited).
+                        </li>
+                        <li>
+                            Only image files (<strong>JPG, GIF, PNG</strong>) are allowed in this demo (by default there is no file type restriction).
+                        </li>
+                        <li>
+                            Uploaded files will be deleted automatically after <strong>5 minutes</strong> (demo setting).
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+
+@section scripts{
+
+    <!-- The blueimp Gallery widget -->
+    <div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls" data-filter=":even">
+        <div class="slides">
+        </div>
+        <h3 class="title"></h3>
+        <a class="prev">
+            ‹
+        </a>
+        <a class="next">
+            ›
+        </a>
+        <a class="close white">
+        </a>
+        <a class="play-pause">
+        </a>
+        <ol class="indicator"></ol>
+    </div>
+    <!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
+    <script id="template-upload" type="text/x-tmpl">
+        {% for (var i=0, file; file=o.files[i]; i++) { %}
+        <tr class="template-upload fade">
+            <td>
+                <span class="preview">{%=i+1%}</span>
+            </td>
+            <td>
+                <p class="name">{%=file.name%}</p>
+                <!--<strong class="error text-danger label label-danger"></strong>-->
+            </td>
+            <td>
+                <p class="size">Processing...</p>
+                <!--
+                 <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                    <div class="progress-bar progress-bar-success" style="width:0%;"></div>
+                </div>
+                    
+                    -->
+            </td>
+            <td>
+                {% if (!i && !o.options.autoUpload) { %}
+                <button class="btn blue start" disabled>
+                    <i class="fa fa-upload"></i>
+                    <span>开始</span>
+                </button>
+                {% } %}
+                {% if (!i) { %}
+                <button class="btn red cancel">
+                    <i class="fa fa-ban"></i>
+                    <span>取消</span>
+                </button>
+                {% } %}
+            </td>
+        </tr>
+        {% } %}
+    </script>
+    <!-- The template to display files available for download -->
+    <script id="template-download" type="text/x-tmpl">
+        {% for (var i=0, file; file=o.files[i]; i++) { %}
+        <tr class="template-download fade">
+            <td>
+                <span class="preview">
+                    {% if (file.thumbnailUrl) { %}
+                    <a href="{%=file.url%}" title="{%=file.name%}" download="{%=file.name%}" data-gallery><img src="{%=file.thumbnailUrl%}"></a>
+                    {% } %}
+                </span>
+            </td>
+            <td>
+                <p class="name">
+                    {% if (file.url) { %}
+                    <a href="{%=file.url%}" title="{%=file.name%}" download="{%=file.name%}" {%=file.thumbnailUrl?'data-gallery':''%}>{%=file.name%}</a>
+                    {% } else { %}
+                    <span>{%=file.name%}</span>
+                    {% } %}
+                </p>
+                {% if (file.error) { %}
+                <div><span class="label label-danger">Error</span> {%=file.error%}</div>
+                {% } %}
+            </td>
+            <td>
+                <span class="size">{%=o.formatFileSize(file.size)%}</span>
+            </td>
+            <td>
+                {% if (file.deleteUrl) { %}
+                <button class="btn red delete btn-sm" data-type="{%=file.deleteType%}" data-url="{%=file.deleteUrl%}" {% if (file.deleteWithCredentials) { %} data-xhr-fields='{"withCredentials":true}' {% } %}>
+                    <i class="fa fa-trash-o"></i>
+                    <span>Delete</span>
+                </button>
+                <input type="checkbox" name="delete" value="1" class="toggle">
+                {% } else { %}
+                <button class="btn yellow cancel btn-sm">
+                    <i class="fa fa-ban"></i>
+                    <span>Cancel</span>
+                </button>
+                {% } %}
+            </td>
+        </tr>
+        {% } %}
+    </script>
+
+    @Html.IncludeScript("~/Scripts/jquery-file-upload/js/vendor/jquery.ui.widget.js")
+    @Html.IncludeScript("~/Scripts/jquery-file-upload/js/vendor/tmpl.min.js")
+    @Html.IncludeScript("~/Scripts/jquery-file-upload/js/vendor/load-image.min.js")
+    @Html.IncludeScript("~/Scripts/jquery-file-upload/js/vendor/canvas-to-blob.min.js")
+    @Html.IncludeScript("~/Scripts/jquery-file-upload/blueimp-gallery/jquery.blueimp-gallery.min.js")
+    @Html.IncludeScript("~/Scripts/jquery-file-upload/js/jquery.iframe-transport.js")
+    @Html.IncludeScript("~/Scripts/jquery-file-upload/js/jquery.fileupload.js")
+    @Html.IncludeScript("~/Scripts/jquery-file-upload/js/jquery.fileupload-process.js")
+    @Html.IncludeScript("~/Scripts/jquery-file-upload/js/jquery.fileupload-image.js")
+    @Html.IncludeScript("~/Scripts/jquery-file-upload/js/jquery.fileupload-audio.js")
+    @Html.IncludeScript("~/Scripts/jquery-file-upload/js/jquery.fileupload-video.js")
+    @Html.IncludeScript("~/Scripts/jquery-file-upload/js/jquery.fileupload-validate.js")
+    @Html.IncludeScript("~/Scripts/jquery-file-upload/js/jquery.fileupload-ui.js")
+
+    @Html.IncludeScript("~/js/form-fileupload.js")
+    
+    <script>
+        jQuery(document).ready(function() {
+           FormFileUpload.init();
+        });
+
+    </script>
+
+}
