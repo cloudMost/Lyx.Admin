@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web;
+﻿using Abp.Dependency;
 using System.IO;
-using Abp.Dependency;
-using Lyx.Admin;
+using System.Web;
 
 namespace Lyx.Admin.Common.IO
 {
@@ -15,25 +9,26 @@ namespace Lyx.Admin.Common.IO
     /// </summary>
     public class FileManager:IFileUpload, ITransientDependency
     {
-
-        private readonly IAppPathSetting _AppPath;
-
-        public FileManager(IAppPathSetting AppPath)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="fileUploadPath">文件上传路径</param>
+        public FileManager()
         {
-            _AppPath = AppPath;
-        }
 
-        public void Upload(HttpContextBase context,string subDir)
+        }
+        public void Upload(HttpContextBase context,string fileUploadPath)
         {
             var httpContext = context.Request;
-
-            string path = Path.Combine(_AppPath.FileUploadPath,subDir);
-
-            FileHelper.CreateDirectoryIfNot(path);
+            //创建目录
+            FileHelper.CreateDirectoryIfNot(fileUploadPath);
             foreach (string file in httpContext.Files)
             {
-
+                var f = httpContext.Files[file];
+                string fileName = Path.Combine(fileUploadPath, f.FileName);
+                f.SaveAs(fileName);
             }
+
         }
 
     }

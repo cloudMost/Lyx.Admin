@@ -11,6 +11,7 @@ using Abp.Web.SignalR;
 using Lyx.Admin.Api;
 using Hangfire;
 using System.Web;
+using Lyx.Admin.Common;
 
 namespace Lyx.Admin.Web
 {
@@ -20,7 +21,8 @@ namespace Lyx.Admin.Web
         typeof(AdminWebApiModule),
         typeof(AbpWebSignalRModule),
         typeof(AbpHangfireModule), //使用后台工作
-        typeof(AbpWebMvcModule)
+        typeof(AbpWebMvcModule),
+        typeof(AdminCommonModule)
         )]
     public class AdminWebModule : AbpModule
     {
